@@ -12,6 +12,11 @@ class jugador:
         self.intentos = 5
         jugador.contador += 1
 
+    def PerderPuntos(self):
+        PuntosPerdidos = 10
+        self.puntos -= PuntosPerdidos
+        print("Has perdido", PuntosPerdidos ,"tus nuevos puntos son", self.puntos)
+
 j1 = nopal = jugador("nopal", 100, 88, 850)
 j2 = lapon = jugador("lapon", 100, 88, 500)
 
@@ -35,4 +40,5 @@ print(j2.nombre ,"haz ganado", j2.puntos ,"puntos, tienes", PuntosNuevos)
 
 j2.puntos = PuntosNuevos
 j1.puntos = PuntosRestantes
+j1.PerderPuntos()
 
