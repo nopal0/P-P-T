@@ -1,6 +1,25 @@
-class jugador:
+class jugador():
 
-    contador = 0 
+    contador = 0
+    PuntosPerdidos = 10
+
+    def PerderPuntos(self, PuntosPerdidos):
+        if self.puntos >= PuntosPerdidos:    
+            self.puntos -= PuntosPerdidos
+            print("Has perdido", PuntosPerdidos ,"tus nuevos puntos son", self.puntos , self.nombre)
+        else:
+                print("Sin puntos suficientes", self.nombre)
+
+    def ComprobarYRestar(self):
+            self.PerderPuntos(jugador.PuntosPerdidos)
+
+    def MostrarDatos(self):
+         print("Hola", self.nombre)
+         print("Tus puntos son", self.puntos)
+         print("Tus creditos son", self.creditos)
+
+    def ObtenerPuntos(self):
+         return self.puntos
 
     def __init__(self, nombre, id,creditos, puntos):
 
@@ -12,33 +31,20 @@ class jugador:
         self.intentos = 5
         jugador.contador += 1
 
-    def PerderPuntos(self):
-        PuntosPerdidos = 10
-        self.puntos -= PuntosPerdidos
-        print("Has perdido", PuntosPerdidos ,"tus nuevos puntos son", self.puntos)
 
-j1 = nopal = jugador("nopal", 100, 88, 850)
-j2 = lapon = jugador("lapon", 100, 88, 500)
+j1 = nopal = jugador("nopal", 100, 88, 10)
+j2 = lapon = jugador("lapon", 100, 88, 10)
+j3 = lugia = jugador("lugia", 100, 88, 10)
 
-jugadores = [j1, j2]
+j1.PerderPuntos(5)
+j2.ComprobarYRestar()
+j3.PerderPuntos(15)
+
+jugadores    = [j1, j2, j3]
+
+prueba = j1.ObtenerPuntos()
 
 for j in jugadores:
+    j.MostrarDatos()
 
-    print ("Tu nombre es: ", j.nombre)
-    print ("Tienes un total de: ", j.puntos ,"puntos")
-
-if jugador.contador <= 1:
-    print("Existe un jugador", jugador.contador)
-else:
-    print("Existen", jugador.contador ,"jugadores")
-
-PuntosNuevos = j1.puntos + j2.puntos
-PuntosRestantes = j1.puntos - j2.puntos
-
-print(j1.nombre ,"haz perdido", j2.puntos ,"Te quedan", PuntosRestantes ,"puntos")
-print(j2.nombre ,"haz ganado", j2.puntos ,"puntos, tienes", PuntosNuevos)
-
-j2.puntos = PuntosNuevos
-j1.puntos = PuntosRestantes
-j1.PerderPuntos()
-
+print(prueba)
