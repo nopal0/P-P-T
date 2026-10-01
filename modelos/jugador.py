@@ -21,30 +21,54 @@ class jugador():
     def ObtenerPuntos(self):
          return self.puntos
 
-    def __init__(self, nombre, id,creditos, puntos):
+    def __init__(self, nombre, id,creditos = 100, puntos= 100):
 
-        self.nombre = nombre
+        if nombre.strip() == "":
+             raise ValueError ("Tienes que ingresar un nombre")
+        else:
+            self.nombre = nombre.strip()
+
         self.id = id
-        self.creditos = creditos
-        self.puntos = puntos
+
+        if creditos >= 0:
+            self.creditos = creditos
+        else:
+             raise ValueError ("No puedes ingresar creditos negativos")
+
+        if puntos >= 0:
+            self.puntos = puntos
+        else:
+            raise ValueError ("No puedes ingresar puntos negativos")
+            
+        
         self.vida = 100
         self.intentos = 5
         jugador.contador += 1
 
 
+
 j1 = nopal = jugador("nopal", 100, 88, 10)
-j2 = lapon = jugador("lapon", 100, 88, 10)
-j3 = lugia = jugador("lugia", 100, 88, 10)
+j2 = megalodon = jugador(" Megalodon ", 48484879 , puntos= 25)
+j1.puntos = -50
+j1.ObtenerPuntos()
 
-j1.PerderPuntos(5)
-j2.ComprobarYRestar()
-j3.PerderPuntos(15)
-
-jugadores    = [j1, j2, j3]
-
-prueba = j1.ObtenerPuntos()
+jugadores    = [j1, j2]
 
 for j in jugadores:
     j.MostrarDatos()
 
-print(prueba)
+try:
+    j2 = lapon = jugador(" lapon ", 100, -88, 0)
+except ValueError:
+    print("No se puede crear un jugador con creditos negativos")
+try:
+    j3 = lugia = jugador("  ", 100, 88, 0)
+except ValueError:
+     print("No se puede crear un jugador sin nombre")
+
+try:
+     j4 = lugia = jugador("lugia", 100, 2 , -38)
+except ValueError:
+     print("No se puede crear un jugador con puntos negativos")
+
+
