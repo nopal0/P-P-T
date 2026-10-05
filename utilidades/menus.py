@@ -1,19 +1,11 @@
-PacksCompras ={
-    "Paquete1" :{ 
-        "Puntos" : 10,
-        "Creditos" : 25
-},
-    "Paquete2" : {
-        "Puntos" : 25,
-        "Creditos" : 80
-},}
-puntos = 10
-creditos = 50
-if PacksCompras["Paquete1"]["Puntos"] >= puntos:
-    NuevosCreditos = PacksCompras["Paquete1"]["Creditos"] + creditos
-    NuevosPuntos = puntos -  PacksCompras["Paquete1"]["Puntos"]
-else:
-    print("bobo")
+import json
 
-print (NuevosPuntos)
-print (NuevosCreditos)
+def leerDicc():
+    with open("packs_compras.json", "r") as archivo:
+        DP = json.load(archivo)
+        return DP
+
+def leerDiccJ():
+    with open("jugadores.json", "r") as archivo:
+        DP = json.load(archivo)
+        return DP

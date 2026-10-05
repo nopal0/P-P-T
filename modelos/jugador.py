@@ -1,4 +1,6 @@
-from utilidades.menus import PacksCompras
+from utilidades.menus import leerDicc , leerDiccJ
+
+PC = leerDicc()
 
 class jugador():
 
@@ -55,10 +57,17 @@ class jugador():
         
     def ComprarCreditos(self , PuntosAPagar):
 
+        Valor = PC
+
+        for paquete in PC.values():
+            if paquete["Puntos"] == PuntosAPagar:
+                CreditosComprados = paquete["Creditos"]
+                break
+
         if self._puntos >= 10:
 
-            if PuntosAPagar >= PacksCompras["Paquete1"]["Valor"]:
-                CreditosComprados = 25
+            if PuntosAPagar >= paquete["Puntos"]:
+                self._creditos + paquete["Creditos"]
                 self.SumarCRestarP(PuntosAPagar , CreditosComprados)
 
             elif PuntosAPagar == 25:
@@ -89,6 +98,22 @@ class jugador():
         else:
              print("Puntos insuficientes")
 
+    def GuardarDatosNuevoJugador(self, n, c, p, cc):
+        try:
+            DJ = leerDiccJ()
+        except FileNotFoundError:
+            DJ = {}
+
+        DJ[id]={
+            "nombre":n,
+            "creditos": c,
+            "puntos": p,
+            "contrasena": cc,
+        }
+
+    def CrearId(self):
+        id = 238 * jugador.contador * 4
+        return id
 
     def __init__(self, nombre, idi,creditos = 100, puntos= 100):
 
@@ -115,49 +140,3 @@ class jugador():
         self.vida = 100
         self.intentos = 5
         jugador.contador += 1
-
-j1 = nopal = jugador("nopal", 100, 88, 10)
-j2 = megalodon = jugador(" Megalodon ", 48484879 , puntos= 25)
-j4 = lugia = jugador("lugia", 100, 2 , 38)
-
-j1.ObtenerPuntos()
-
-jugadores    = [j1, j2]
-
-for j in jugadores:
-    j.MostrarDatos()
-
-try:
-    j2 = lapon = jugador(" lapon ", 100, -88, 0)
-except ValueError:
-    print("No se puede crear un jugador con creditos negativos")
-
-try:
-    j3 = lugia = jugador("  ", 100, 88, 0)
-except ValueError:
-     print("No se puede crear un jugador sin nombre")
-
-try:
-     j4.PerderPuntos(-388)
-except ValueError:
-     print("No se puede tener puntos negativos")
-
-try:
-     j5 = l = jugador("Lonche", "12212")
-except ValueError:
-     print("!!! Error en id, ingresar numeros !!!")
-
-j2.CambiarPuntos(0)
-j2.CambiarPuntos(80)
-
-try:
-     j2.CambiarPuntos(-100)
-except ValueError:
-     print("!!! No numeros negativos !!!")
-
-PuntosActuales = j2.ObtenerPuntos()     
-print (PuntosActuales)
-
-j1.ComprarCreditos(10)
-j2.SumarCRestarP(10,150)
-j4.SumarCRestarP(80 , 150)
