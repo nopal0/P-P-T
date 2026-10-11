@@ -1,4 +1,4 @@
-from utilidades.UtilidadesDicc import leerDicc
+from persistencia.catalogo_json import leerDicc
 
 PC = leerDicc()
 
@@ -57,7 +57,8 @@ class jugador():
 
                     return False
         except ValueError:
-
+            pass
+        
     def CambiarPuntos(self, NuevosPuntos):
 
         if NuevosPuntos < 0:

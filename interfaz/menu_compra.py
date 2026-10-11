@@ -1,5 +1,5 @@
-from utilidades.UtilidadesDicc import leerDicc
-from utilidades.validaciones import ValidarQueSeaNumero
+from persistencia.catalogo_json import leerDicc
+from interfaz.entradas import ValidarQueSeaNumero
 from modelos.jugador import jugador
 
 def MostrarPaquetes():
@@ -12,11 +12,8 @@ def MostrarPaquetes():
         print ("Y tiene un valor de: ", paquete["Creditos"])
 
 def v():
-    try:
-        PuntosAPagar = int(input("Ingrese el precio del paquete que dese: "))
-    except ValueError:
-        
-        print ("")
+
+    pass
 
 
 

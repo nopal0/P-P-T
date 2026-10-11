@@ -1,4 +1,4 @@
-from utilidades.validaciones import ValidarQueSeaNumero
+from interfaz.entradas import ValidarQueSeaNumero
 
 def MainMenuPrincipal():
 
@@ -20,20 +20,5 @@ def MostrarOpcionesPrincipales():
         print(O)
 
 def MenuPrincipalRespuesta():
-    i = 5
-    while i > 0:
-
-        try:
-            r = int(input("Que opcion eligiras: "))
-            return r
-        
-        except ValueError:
-
-            i -= 1
-            print("Ingrese un numero")
-            print("Intente nuevamente")
-            
-            if i == 0:
-            
-                print("Sin intentos posibles")
-                return None
+    r = ValidarQueSeaNumero("Que opcion eligiras: ")
+    return r
