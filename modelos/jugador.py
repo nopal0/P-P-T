@@ -5,7 +5,7 @@ PC = leerDicc()
 class jugador():
 
     contador = 0
-    PuntosPerdidos = 10
+    PPerdidos = 10
 
     def __init__(self, nombre, idi,creditos = 100, puntos= 100):
 
@@ -45,26 +45,41 @@ class jugador():
     def ObtenerPuntos(self):
         return self._puntos
 
+    def RestarPuntos(self, PuntosPerdidos):
+        try:
+            if PuntosPerdidos != int:
+                if self._puntos >= PuntosPerdidos:
+                    NuevosPuntos = self._puntos - PuntosPerdidos
+                    
+                    return NuevosPuntos
+
+                else:
+
+                    return False
+        except ValueError:
+
     def CambiarPuntos(self, NuevosPuntos):
+
         if NuevosPuntos < 0:
             raise ValueError("Los puntos no pueden ser negativos", self.nombre)
+        
         else:
               self._puntos = NuevosPuntos
               print ("Tus nuevos puntos son", self._puntos)
               return self.ObtenerPuntos()
 
-    def PerderPuntos(self, PuntosPerdidos):
+    def PerderPuntos(self, PuntosAPagar):
         
-        if PuntosPerdidos <= 0:
+        if PuntosAPagar <= 0:
              
              raise ValueError ("No puedes ingreasar puntos negativo")
         
         else:
         
-            if self._puntos >= PuntosPerdidos:    
+            if self._puntos >= PuntosAPagar:    
         
-                self._puntos -= PuntosPerdidos
-                print("Has perdido", PuntosPerdidos ,"tus nuevos puntos son", self._puntos , self.nombre)
+                self._puntos -= PuntosAPagar
+                print("Has perdido", PuntosAPagar ,"tus nuevos puntos son", self._puntos , self.nombre)
         
             else:
         
@@ -76,30 +91,19 @@ class jugador():
             
     def ComprobarPuntosCompra(self, PuntosAPagar):
         
-        if PuntosAPagar >= self._puntos:
-            return False
+        if self._puntos >= PuntosAPagar:
+            return True
         
         else:
-            return True
+            return False
 
     def ComprarCreditos(self , PuntosAPagar):
 
-        if PuntosAPagar == PC["Paquete1"]["Puntos"]:
-            Precio = PC["Paquete1"]["Puntos"]
-            Valor = PC["Paquete1"]["Creditos"]
+        if self.ComprobarPuntosCompra(PuntosAPagar) == True:
+            self.ComprobarYRestar()
+            
 
-        if self._puntos >= 10:
 
-            if PuntosAPagar >= Precio:
-                self.SumarCRestarP(PuntosAPagar , Valor)
-
-            else:
-                 print ("Opcion invalida")
-                 print ("Ingrese una de las siguientes opciones")
-                 print ("10 , 25 , 50")
-
-        else:
-             print("Puntos insuficientes")
 
     def SumarCRestarP(self, PuntosAPagar , CreditosComprados):
 
@@ -117,4 +121,49 @@ class jugador():
 
         else:
             print("Puntos insuficientes")
+
+    def LabComprobarPuntosNoSeanNegativosGeneral(self):
+
+        if self._puntos > 0:
+            return True
         
+        else:
+            return False
+
+    def LabRestarYComprobarPuntos(self, PuntosPerdidos ):
+
+        if self.LabComprobarPuntosNoSeanNegativosGeneral() == True:
+            NP = self._puntos - PuntosPerdidos
+            return NP
+        
+        else:
+            return False
+
+    def LabSumarYComprobarPuntos(self):
+        if self.LabComprobarPuntosNoSeanNegativosGeneral() == True:
+            print
+
+    def LabCreditosComprobarPositivoGeneral(self):
+
+        if self._creditos > 0:
+            return True
+
+        else:
+            return False
+
+    def LabRestatYComprobarCreditos(self, CreditosPerdidos):
+
+        if self.LabCreditosComprobarPositivoGeneral() == True:
+            NC = self._creditos - CreditosPerdidos
+
+    def ObtenerCreditos(PuntosAPagar):
+
+        for puntos in PC.values():
+            if PuntosAPagar == puntos["Puntos"]:
+                return puntos["Creditos"]
+        else:
+            return False
+
+    def MainCompra(self):
+
+        PuntosAPagar = int(input(""))
