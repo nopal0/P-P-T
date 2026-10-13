@@ -22,3 +22,8 @@ def MostrarOpcionesPrincipales():
 def MenuPrincipalRespuesta():
     r = ValidarQueSeaNumero("Que opcion eligiras: ")
     return r
+
+def MostrarDatos(Jugador):
+     print("Hola", Jugador.nombre)
+     print("Tus puntos son", Jugador._puntos)
+     print("Tus creditos son", Jugador._creditos)

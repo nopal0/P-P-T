@@ -39,3 +39,7 @@ def ValidarQueSeaLetra(pregunta):
 
                 print("Sin intentos posibles")
                 return None
+
+def MainCompra():
+
+    PuntosAPagar = int(input(""))

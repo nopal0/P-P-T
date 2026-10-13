@@ -1,4 +1,7 @@
 from modelos.jugador import jugador
+from interfaz.menu_principal import MostrarDatos
+from servicios.tienda import ComprarCreditos
+
 
 j1 = nopal = jugador("nopal", 100, 88, 10)
 j2 = megalodon = jugador(" Megalodon ", 48484879)
@@ -9,7 +12,7 @@ j1.ObtenerPuntos()
 jugadores    = [j1, j2]
 
 for j in jugadores:
-    j.MostrarDatos()
+    MostrarDatos(j)
 
 try:
     j2 = lapon = jugador(" lapon ", 100, -88, 0)
@@ -42,7 +45,7 @@ except ValueError:
 PuntosActuales = j2.ObtenerPuntos()     
 print (PuntosActuales)
 
-j1.ComprarCreditos(10)
+ComprarCreditos(j1, 10)
 j2.SumarCRestarP(10,150)
 j4.SumarCRestarP(80 , 150)
 
@@ -52,5 +55,6 @@ id = 485
 
 j100 = jugador(n, id)
 
-j100.MostrarDatos()
+MostrarDatos(j100)
 
+j1.xd(PuntosAPagar = 50)

@@ -1,6 +1,4 @@
-from persistencia.catalogo_json import leerDicc
-
-PC = leerDicc()
+from interfaz.menu_compra import MainMenuCompras
 
 class jugador():
 
@@ -36,11 +34,6 @@ class jugador():
     def CrearId(self):
         id = 238 * jugador.contador * 4
         return id
-
-    def MostrarDatos(self):
-         print("Hola", self.nombre)
-         print("Tus puntos son", self._puntos)
-         print("Tus creditos son", self._creditos)
 
     def ObtenerPuntos(self):
         return self._puntos
@@ -80,11 +73,12 @@ class jugador():
             if self._puntos >= PuntosAPagar:    
         
                 self._puntos -= PuntosAPagar
-                print("Has perdido", PuntosAPagar ,"tus nuevos puntos son", self._puntos , self.nombre)
+
+                return self.ObtenerPuntos
         
             else:
-        
-                print("Sin puntos suficientes", self.nombre)
+
+                return False
 
     def ComprobarYRestar(self):
         
@@ -97,14 +91,6 @@ class jugador():
         
         else:
             return False
-
-    def ComprarCreditos(self , PuntosAPagar):
-
-        if self.ComprobarPuntosCompra(PuntosAPagar) == True:
-            self.ComprobarYRestar()
-            
-
-
 
     def SumarCRestarP(self, PuntosAPagar , CreditosComprados):
 
@@ -123,48 +109,5 @@ class jugador():
         else:
             print("Puntos insuficientes")
 
-    def LabComprobarPuntosNoSeanNegativosGeneral(self):
-
-        if self._puntos > 0:
-            return True
-        
-        else:
-            return False
-
-    def LabRestarYComprobarPuntos(self, PuntosPerdidos ):
-
-        if self.LabComprobarPuntosNoSeanNegativosGeneral() == True:
-            NP = self._puntos - PuntosPerdidos
-            return NP
-        
-        else:
-            return False
-
-    def LabSumarYComprobarPuntos(self):
-        if self.LabComprobarPuntosNoSeanNegativosGeneral() == True:
-            print
-
-    def LabCreditosComprobarPositivoGeneral(self):
-
-        if self._creditos > 0:
-            return True
-
-        else:
-            return False
-
-    def LabRestatYComprobarCreditos(self, CreditosPerdidos):
-
-        if self.LabCreditosComprobarPositivoGeneral() == True:
-            NC = self._creditos - CreditosPerdidos
-
-    def ObtenerCreditos(PuntosAPagar):
-
-        for puntos in PC.values():
-            if PuntosAPagar == puntos["Puntos"]:
-                return puntos["Creditos"]
-        else:
-            return False
-
-    def MainCompra(self):
-
-        PuntosAPagar = int(input(""))
+    def xd():
+        MainMenuCompras()

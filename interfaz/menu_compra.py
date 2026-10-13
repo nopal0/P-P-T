@@ -1,5 +1,6 @@
 from persistencia.catalogo_json import leerDicc
 from interfaz.entradas import ValidarQueSeaNumero
+from servicios.tienda import ObtenerCreditos
 from modelos.jugador import jugador
 
 def MostrarPaquetes():
@@ -11,17 +12,11 @@ def MostrarPaquetes():
         print ("El precio de este paquete es de:", paquete["Puntos"])
         print ("Y tiene un valor de: ", paquete["Creditos"])
 
-def v():
-
-    pass
-
-
-
 def MainMenuCompras():
 
     MostrarPaquetes()
 
     PuntosAPagar = ValidarQueSeaNumero("Ingrese el precio de paquete que deses")
 
-    Valor = jugador.ObtenerCreditos(PuntosAPagar)
-    print (Valor)
+    ObtenerCreditos(PuntosAPagar)
+    print (jugador._puntos)

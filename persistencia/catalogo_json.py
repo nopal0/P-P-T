@@ -1,11 +1,8 @@
 import json
+from pathlib import Path
 
 def leerDicc():
-    with open("packs_compras.json", "r") as archivo:
-        DP = json.load(archivo)
-        return DP
-
-def leerDiccJ():
-    with open("jugadores.json", "r") as archivo:
+    ruta = Path(__file__).resolve().parent.parent / "config" / "packs_compras.json"
+    with open(ruta, "r") as archivo:
         DP = json.load(archivo)
         return DP
